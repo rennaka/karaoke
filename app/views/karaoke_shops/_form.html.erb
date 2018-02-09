@@ -1,0 +1,77 @@
+<%= form_with(model: karaoke_shop, local: true) do |form| %>
+  <% if karaoke_shop.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(karaoke_shop.errors.count, "error") %> prohibited this karaoke_shop from being saved:</h2>
+
+      <ul>
+      <% karaoke_shop.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :karaoke_shop_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :day_price %>
+    <%= form.number_field :day_price, id: :karaoke_shop_day_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :night_price %>
+    <%= form.number_field :night_price, id: :karaoke_shop_night_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dayfree1_price %>
+    <%= form.number_field :dayfree1_price, id: :karaoke_shop_dayfree1_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nightfree1_price %>
+    <%= form.number_field :nightfree1_price, id: :karaoke_shop_nightfree1_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :open_time %>
+    <%= form.time_select :open_time, id: :karaoke_shop_open_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :close_time %>
+    <%= form.time_select :close_time, id: :karaoke_shop_close_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nightstart_time %>
+    <%= form.time_select :nightstart_time, id: :karaoke_shop_nightstart_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dayfree1_start_time %>
+    <%= form.time_select :dayfree1_start_time, id: :karaoke_shop_dayfree1_start_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dayfree1_endtime %>
+    <%= form.time_select :dayfree1_endtime, id: :karaoke_shop_dayfree1_endtime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nightfree1_start_time %>
+    <%= form.time_select :nightfree1_start_time, id: :karaoke_shop_nightfree1_start_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nightfree1_endtime %>
+    <%= form.time_select :nightfree1_endtime, id: :karaoke_shop_nightfree1_endtime %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

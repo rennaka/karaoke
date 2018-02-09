@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  day_price: 1
+  night_price: 1
+  dayfree1_price: 1
+  nightfree1_price: 1
+  open_time: 2018-02-09 00:53:08
+  close_time: 2018-02-09 00:53:08
+  nightstart_time: 2018-02-09 00:53:08
+  dayfree1_start_time: 2018-02-09 00:53:08
+  dayfree1_endtime: 2018-02-09 00:53:08
+  nightfree1_start_time: 2018-02-09 00:53:08
+  nightfree1_endtime: 2018-02-09 00:53:08
+
+two:
+  name: MyString
+  day_price: 1
+  night_price: 1
+  dayfree1_price: 1
+  nightfree1_price: 1
+  open_time: 2018-02-09 00:53:08
+  close_time: 2018-02-09 00:53:08
+  nightstart_time: 2018-02-09 00:53:08
+  dayfree1_start_time: 2018-02-09 00:53:08
+  dayfree1_endtime: 2018-02-09 00:53:08
+  nightfree1_start_time: 2018-02-09 00:53:08
+  nightfree1_endtime: 2018-02-09 00:53:08

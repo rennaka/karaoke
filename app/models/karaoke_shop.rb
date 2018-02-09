@@ -1,0 +1,3 @@
+class KaraokeShop < ApplicationRecord
+  
+end
