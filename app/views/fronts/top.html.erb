@@ -2,18 +2,12 @@
 
 <h1>カラオケ料金検索</h1>
 
-<%= form_with(model: front, local: true) do |form| %>
-  <% if front.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(front.errors.count, "error") %> prohibited this front from being saved:</h2>
+<%= form_with(url: karaoke_shops_path, local: true) do |form| %>
 
-      <ul>
-      <% front.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div>
+    <%= form.label :date, "曜日" %>
+    <%= select_tag "front[date]", options_for_select(EasySettings.date) %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>
