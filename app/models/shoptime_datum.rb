@@ -1,0 +1,2 @@
+class ShoptimeDatum < ApplicationRecord
+end

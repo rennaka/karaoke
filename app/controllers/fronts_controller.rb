@@ -4,10 +4,7 @@ class FrontsController < ApplicationController
   def top
   end
 
-  def show
-  end
-
-  def new
+  def result
   end
 
   def edit

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
   root "fronts#top"
-  resources :karaoke_shops
+  post "/result", to: "fronts#result"
+  resources :karaoke_shops do
+  end
+
+
 end

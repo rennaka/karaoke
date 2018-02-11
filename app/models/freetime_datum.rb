@@ -1,0 +1,2 @@
+class FreetimeDatum < ApplicationRecord
+end

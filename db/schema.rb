@@ -10,7 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180210164358) do
+ActiveRecord::Schema.define(version: 20180211060047) do
+
+  create_table "date_statuses", force: :cascade do |t|
+    t.string "date"
+    t.string "day"
+    t.string "night"
+    t.integer "karaoke_shop_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "freetime_data", force: :cascade do |t|
+    t.time "weekday_dayfree1_starttime"
+    t.time "weekday_dayfree1_endtime"
+    t.integer "weekday_dayfree1_limittime"
+    t.time "weekday_dayfree2_starttime"
+    t.time "weekday_dayfree2_endtime"
+    t.integer "weekday_dayfree2_limittime"
+    t.time "weekday_nightfree1_starttime"
+    t.time "weekday_nightfree1_endtime"
+    t.integer "weekday_nightfree1_limittime"
+    t.time "weekday_nightfree2_starttime"
+    t.time "weekday_nightfree2_endtime"
+    t.integer "weekday_nightfree2_limittime"
+    t.time "holiday_dayfree1_starttime"
+    t.time "holiday_dayfree1_endtime"
+    t.integer "holiday_dayfree1_limittime"
+    t.time "holiday_dayfree2_starttime"
+    t.time "holiday_dayfree2_endtime"
+    t.integer "holiday_dayfree2_limittime"
+    t.time "holiday_nightfree1_starttime"
+    t.time "holiday_nightfree1_endtime"
+    t.integer "holiday_nightfree1_limittime"
+    t.time "holiday_nightfree2_starttime"
+    t.time "holiday_nightfree2_endtime"
+    t.integer "holiday_nightfree2_limittime"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "karaoke_kinds", force: :cascade do |t|
     t.string "name"
@@ -32,6 +70,35 @@ ActiveRecord::Schema.define(version: 20180210164358) do
     t.time "dayfree1_endtime"
     t.time "nightfree1_start_time"
     t.time "nightfree1_endtime"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "karaoke_kind_id"
+  end
+
+  create_table "member_price_data", force: :cascade do |t|
+    t.integer "weekday_day_price"
+    t.integer "holiday_day_price"
+    t.integer "weekday_night_price"
+    t.integer "holiday_night_price"
+    t.integer "weekday_dayfree1_price"
+    t.integer "holiday_dayfree1_price"
+    t.integer "weekday_nightfree1_price"
+    t.integer "holiday_nightfree1_price"
+    t.integer "weekday_dayfree2_price"
+    t.integer "holiday_dayfree2_price"
+    t.integer "weekday_nightfree2_price"
+    t.integer "holiday_nightfree2_price"
+    t.integer "karaoke_shop_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shoptime_data", force: :cascade do |t|
+    t.string "date"
+    t.time "open_time"
+    t.time "close_time"
+    t.string "nightstart_time"
+    t.integer "karaoke_shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

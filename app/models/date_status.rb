@@ -1,0 +1,2 @@
+class DateStatus < ApplicationRecord
+end

@@ -2,7 +2,7 @@
 
 <h1>カラオケ料金検索</h1>
 
-<%= form_with(url: karaoke_shops_path, local: true) do |form| %>
+<%= form_with(url: result_path, local: true) do |form| %>
 
   <div>
     <%= form.label :date, "曜日" %>
@@ -22,4 +22,7 @@
   <div class="actions">
     <%= form.submit "料金を計算" %>
   </div>
+
 <% end %>
+
+<%= link_to '新規店舗登録', new_karaoke_shop_path %>
