@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180211060047) do
+ActiveRecord::Schema.define(version: 20180213190844) do
 
   create_table "date_statuses", force: :cascade do |t|
     t.string "date"
@@ -48,28 +48,18 @@ ActiveRecord::Schema.define(version: 20180211060047) do
     t.integer "holiday_nightfree2_limittime"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "karaoke_shop_id"
   end
 
   create_table "karaoke_kinds", force: :cascade do |t|
     t.string "name"
-    t.string "model_name"
+    t.string "name_of_model"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "karaoke_shops", force: :cascade do |t|
     t.string "name"
-    t.integer "day_price"
-    t.integer "night_price"
-    t.integer "dayfree1_price"
-    t.integer "nightfree1_price"
-    t.time "open_time"
-    t.time "close_time"
-    t.time "nightstart_time"
-    t.time "dayfree1_start_time"
-    t.time "dayfree1_endtime"
-    t.time "nightfree1_start_time"
-    t.time "nightfree1_endtime"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "karaoke_kind_id"

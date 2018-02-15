@@ -5,6 +5,9 @@ class FrontsController < ApplicationController
   end
 
   def result
+    KaraokeShop.all.each do |shop|
+      a = shop.object(params[:front][:date])
+    end
   end
 
   def edit
