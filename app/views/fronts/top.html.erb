@@ -6,17 +6,17 @@
 
   <div>
     <%= form.label :date, "曜日" %>
-    <%= select_tag "front[date]", options_for_select(EasySettings.date) %>
+    <%= select_tag "[date]", options_for_select(EasySettings.date) %>
   </div>
 
   <div>
     <%= form.label :start_time, "開始時間" %>
-    <%= time_select "front[start_time]", :start_time, :minute_step => 10 %>
+    <%= time_select "[start_time]", :start_time, :minute_step => 10 %>
   </div>
 
   <div>
     <%= form.label :end_time, "終了時間" %>
-    <%= time_select "front[end_time]", :end_time, :minute_step => 10 %>
+    <%= time_select "[end_time]", :end_time, :minute_step => 10 %>
   </div>
 
   <div class="actions">

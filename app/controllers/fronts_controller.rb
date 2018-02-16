@@ -1,12 +1,12 @@
 class FrontsController < ApplicationController
-  before_action :set_front, only: [:show, :edit, :update, :destroy]
+  before_action :set_shops, only: [:result]
 
   def top
   end
 
   def result
-    KaraokeShop.all.each do |shop|
-      a = shop.object(params[:front][:date])
+    @shops.each do |shop|
+      shop.normal_charge(params[:start_time],params[:end_time])
     end
   end
 
@@ -46,7 +46,8 @@ class FrontsController < ApplicationController
   end
 
   private
-    def set_front
+    def set_shops
+      @shops = KaraokeShop.all.map { |shop| shop.object(params[:date]) }
     end
 
     def front_params

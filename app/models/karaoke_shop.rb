@@ -44,4 +44,5 @@ class KaraokeShop < ApplicationRecord
   def price_param(date)
     MemberPriceDatum.find_by(karaoke_shop_id: self.id).to_param(day_is_weekday?(date), night_is_weekday?(date))
   end
+
 end
