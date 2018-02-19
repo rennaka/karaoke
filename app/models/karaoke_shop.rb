@@ -1,5 +1,5 @@
 class KaraokeShop < ApplicationRecord
-  attr_accessor :day_price, :night_price, :dayfree1_price, :nightfree1_price, :open_time, :close_time, :nightstart_time, :dayfree1_starttime, :dayfree1_endtime, :nightfree1_starttime, :nightfree1_endtime
+  attr_accessor :day_price, :night_price, :dayfree1_price, :nightfree1_price, :open_time, :close_time, :nightstart_time, :dayfree1_starttime, :dayfree1_endtime, :nightfree1_starttime, :nightfree1_endtime, :starttime, :endtime
   belongs_to :karaoke_kind
   has_many :date_statuses, dependent: :delete_all
   has_many :shoptime_data, dependent: :delete_all
@@ -10,8 +10,8 @@ class KaraokeShop < ApplicationRecord
 
   end
 
-  def object(date)
-    KaraokeKind.find(self.karaoke_kind_id).name_of_model.constantize.new(id: self.id).set_parameters(date)
+  def object(date,starttime,endtime)
+    KaraokeKind.find(self.karaoke_kind_id).name_of_model.constantize.new(id: self.id, starttime: starttime, endtime: endtime).set_parameters(date)
   end
 
   def set_parameters(date)

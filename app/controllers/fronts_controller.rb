@@ -6,7 +6,7 @@ class FrontsController < ApplicationController
 
   def result
     @shops.each do |shop|
-      shop.normal_charge(params[:start_time],params[:end_time])
+      p shop.play_time
     end
   end
 
@@ -47,9 +47,14 @@ class FrontsController < ApplicationController
 
   private
     def set_shops
-      @shops = KaraokeShop.all.map { |shop| shop.object(params[:date]) }
+      @shops = KaraokeShop.all.map { |shop| shop.object(params[:date],start_time,end_time) }
     end
 
-    def front_params
+    def start_time
+      OnlyTime.set(params[:start_time]["start_time(4i)"],params[:start_time]["start_time(5i)"])
+    end
+
+    def end_time
+      OnlyTime.set(params[:end_time]["end_time(4i)"],params[:end_time]["end_time(5i)"])
     end
 end
