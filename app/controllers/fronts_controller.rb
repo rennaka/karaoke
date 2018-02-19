@@ -6,7 +6,7 @@ class FrontsController < ApplicationController
 
   def result
     @shops.each do |shop|
-      p shop.play_time
+      binding.pry
     end
   end
 
@@ -55,6 +55,7 @@ class FrontsController < ApplicationController
     end
 
     def end_time
-      OnlyTime.set(params[:end_time]["end_time(4i)"],params[:end_time]["end_time(5i)"])
+      tmp_end_time = OnlyTime.set(params[:end_time]["end_time(4i)"],params[:end_time]["end_time(5i)"])
+      tmp_end_time < start_time ? tmp_end_time + 1.days : tmp_end_time
     end
 end

@@ -10,11 +10,15 @@ class Karaokekan < KaraokeShop
 
   private
 
+  def business_hours
+    (@open_time..@close_time)
+  end
+
   def real_starttime
-    (@starttime - @open_time) > 0 ? @starttime : @open_time
+    business_hours.include?(@starttime) ? @starttime : @open_time
   end
 
   def real_endtime
-    (@endtime - @close_time) > 0 ? @endtime : @close_time
+    business_hours.include?(@endtime) ? @endtime : @close_time
   end
 end

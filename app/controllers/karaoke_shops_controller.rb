@@ -25,30 +25,11 @@ class KaraokeShopsController < ApplicationController
   # POST /karaoke_shops.json
   def create
     @karaoke_shop = KaraokeShop.new(karaoke_shop_params)
-
-    respond_to do |format|
       if @karaoke_shop.save
-        format.html { redirect_to @karaoke_shop, notice: 'Karaoke shop was successfully created.' }
-        format.json { render :show, status: :created, location: @karaoke_shop }
+        redirect_to root_path, notice: 'Karaoke shop was successfully created.'
       else
-        format.html { render :new }
-        format.json { render json: @karaoke_shop.errors, status: :unprocessable_entity }
+        render :new
       end
-    end
-  end
-
-  # PATCH/PUT /karaoke_shops/1
-  # PATCH/PUT /karaoke_shops/1.json
-  def update
-    respond_to do |format|
-      if @karaoke_shop.update(karaoke_shop_params)
-        format.html { redirect_to @karaoke_shop, notice: 'Karaoke shop was successfully updated.' }
-        format.json { render :show, status: :ok, location: @karaoke_shop }
-      else
-        format.html { render :edit }
-        format.json { render json: @karaoke_shop.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # DELETE /karaoke_shops/1
@@ -69,6 +50,6 @@ class KaraokeShopsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def karaoke_shop_params
-      params.require(:karaoke_shop).permit(:name, :day_price, :night_price, :dayfree1_price, :nightfree1_price, :open_time, :close_time, :nightstart_time, :dayfree1_start_time, :dayfree1_endtime, :nightfree1_start_time, :nightfree1_endtime)
+      params.require(:karaoke_shop).permit(:name, :karaoke_kind_id)
     end
 end

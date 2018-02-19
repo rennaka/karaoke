@@ -17,58 +17,211 @@
   </div>
 
   <div class="field">
-    <%= form.label :day_price %>
-    <%= form.number_field :day_price, id: :karaoke_shop_day_price %>
+    <%= form.label :karaoke_kind_id %>
+    <%= form.select :karaoke_kind_id, options_for_select(KaraokeKind.pluck(:name, :id))%>
+  </div>
+
+  <h2> プライスデータ　</h2>
+
+  <div class="field">
+    <%= form.label :weekday_day_price %>
+    <%= form.number_field :weekday_day_price %>
   </div>
 
   <div class="field">
-    <%= form.label :night_price %>
-    <%= form.number_field :night_price, id: :karaoke_shop_night_price %>
+    <%= form.label :holiday_day_price %>
+    <%= form.number_field :holiday_day_price %>
   </div>
 
   <div class="field">
-    <%= form.label :dayfree1_price %>
-    <%= form.number_field :dayfree1_price, id: :karaoke_shop_dayfree1_price %>
+    <%= form.label :weekday_night_price %>
+    <%= form.number_field :weekday_night_price %>
   </div>
 
   <div class="field">
-    <%= form.label :nightfree1_price %>
-    <%= form.number_field :nightfree1_price, id: :karaoke_shop_nightfree1_price %>
+    <%= form.label :holiday_night_price %>
+    <%= form.number_field :holiday_night_price %>
   </div>
+
+  <div class="field">
+    <%= form.label :weekday_dayfree1_price %>
+    <%= form.number_field :weekday_dayfree1_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :holiday_dayfree1_price %>
+    <%= form.number_field :holiday_dayfree1_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weekday_nightfree1_price %>
+    <%= form.number_field :weekday_nightfree1_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :holiday_nightfree1_price %>
+    <%= form.number_field :holiday_nightfree1_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weekday_dayfree2_price %>
+    <%= form.number_field :weekday_dayfree2_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :holiday_dayfree2_price %>
+    <%= form.number_field :holiday_dayfree2_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weekday_nightfree2_price %>
+    <%= form.number_field :weekday_nightfree2_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :holiday_nightfree2_price %>
+    <%= form.number_field :holiday_nightfree2_price %>
+  </div>
+
+  <h2> フリータイムデータ　</h2>
+
+  <div class="field">
+    <%= form.label :weekday_dayfree1_starttime %>
+    <%= form.time_select :weekday_dayfree1_starttime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weekday_dayfree1_endtime %>
+    <%= form.time_select :weekday_dayfree1_endtime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weekday_dayfree1_limittime %>
+    <%= form.time_select :weekday_dayfree1_limittime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :holiday_dayfree1_starttime %>
+    <%= form.time_select :holiday_dayfree1_starttime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :holiday_dayfree1_endtime %>
+    <%= form.time_select :holiday_dayfree1_endtime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :holiday_dayfree1_limittime %>
+    <%= form.time_select :holiday_dayfree1_limittime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weekday_nightfree1_starttime %>
+    <%= form.time_select :weekday_nightfree1_starttime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weekday_nightfree1_endtime %>
+    <%= form.time_select :weekday_nightfree1_endtime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weekday_nightfree1_limittime %>
+    <%= form.time_select :weekday_nightfree1_limittime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :holiday_nightfree1_starttime %>
+    <%= form.time_select :holiday_nightfree1_starttime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :holiday_nightfree1_endtime %>
+    <%= form.time_select :holiday_nightfree1_endtime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :holiday_nightfree1_limittime %>
+    <%= form.time_select :holiday_nightfree1_limittime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weekday_dayfree2_starttime %>
+    <%= form.time_select :weekday_dayfree2_starttime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weekday_dayfree2_endtime %>
+    <%= form.time_select :weekday_dayfree2_endtime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weekday_dayfree2_limittime %>
+    <%= form.time_select :weekday_dayfree2_limittime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :holiday_dayfree2_starttime %>
+    <%= form.time_select :holiday_dayfree2_starttime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :holiday_dayfree2_endtime %>
+    <%= form.time_select :holiday_dayfree2_endtime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :holiday_dayfree2_limittime %>
+    <%= form.time_select :holiday_dayfree2_limittime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weekday_nightfree2_starttime %>
+    <%= form.time_select :weekday_nightfree2_starttime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weekday_nightfree2_endtime %>
+    <%= form.time_select :weekday_nightfree2_endtime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weekday_nightfree2_limittime %>
+    <%= form.time_select :weekday_nightfree2_limittime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :holiday_nightfree2_starttime %>
+    <%= form.time_select :holiday_nightfree2_starttime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :holiday_nightfree2_endtime %>
+    <%= form.time_select :holiday_nightfree2_endtime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :holiday_nightfree2_limittime %>
+    <%= form.time_select :holiday_nightfree2_limittime %>
+  </div>
+
+  <h2> 曜日データ　</h2>
+  <table>
+    <thead>
+    </thead>
+  </table>
+
+
+  <%= form.select :karaoke_kind_id, options_for_select(KaraokeKind.pluck(:name, :id))%>
 
   <div class="field">
     <%= form.label :open_time %>
-    <%= form.time_select :open_time, id: :karaoke_shop_open_time %>
+    <%= form.time_select :open_time %>
   </div>
 
   <div class="field">
     <%= form.label :close_time %>
-    <%= form.time_select :close_time, id: :karaoke_shop_close_time %>
-  </div>
-
-  <div class="field">
-    <%= form.label :nightstart_time %>
-    <%= form.time_select :nightstart_time, id: :karaoke_shop_nightstart_time %>
-  </div>
-
-  <div class="field">
-    <%= form.label :dayfree1_start_time %>
-    <%= form.time_select :dayfree1_start_time, id: :karaoke_shop_dayfree1_start_time %>
-  </div>
-
-  <div class="field">
-    <%= form.label :dayfree1_endtime %>
-    <%= form.time_select :dayfree1_endtime, id: :karaoke_shop_dayfree1_endtime %>
-  </div>
-
-  <div class="field">
-    <%= form.label :nightfree1_start_time %>
-    <%= form.time_select :nightfree1_start_time, id: :karaoke_shop_nightfree1_start_time %>
-  </div>
-
-  <div class="field">
-    <%= form.label :nightfree1_endtime %>
-    <%= form.time_select :nightfree1_endtime, id: :karaoke_shop_nightfree1_endtime %>
+    <%= form.time_select :close_time %>
   </div>
 
   <div class="actions">
