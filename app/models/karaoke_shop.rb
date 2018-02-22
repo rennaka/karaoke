@@ -3,8 +3,9 @@ class KaraokeShop < ApplicationRecord
   belongs_to :karaoke_kind
   has_many :date_statuses, dependent: :delete_all
   has_many :shoptime_data, dependent: :delete_all
-  has_one :member_price_data, dependent: :delete
-  has_one :freetime_data, dependent: :delete
+  has_one :member_price_datum, dependent: :delete
+  has_one :freetime_datum, dependent: :delete
+  validates :name, presence: true
 
   def self.create_all(params)
 

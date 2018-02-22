@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213190844) do
+ActiveRecord::Schema.define(version: 20180222163950) do
 
   create_table "date_statuses", force: :cascade do |t|
     t.string "date"
@@ -22,29 +22,29 @@ ActiveRecord::Schema.define(version: 20180213190844) do
   end
 
   create_table "freetime_data", force: :cascade do |t|
-    t.time "weekday_dayfree1_starttime"
-    t.time "weekday_dayfree1_endtime"
+    t.datetime "weekday_dayfree1_starttime"
+    t.datetime "weekday_dayfree1_endtime"
     t.integer "weekday_dayfree1_limittime"
-    t.time "weekday_dayfree2_starttime"
-    t.time "weekday_dayfree2_endtime"
+    t.datetime "weekday_dayfree2_starttime"
+    t.datetime "weekday_dayfree2_endtime"
     t.integer "weekday_dayfree2_limittime"
-    t.time "weekday_nightfree1_starttime"
-    t.time "weekday_nightfree1_endtime"
+    t.datetime "weekday_nightfree1_starttime"
+    t.datetime "weekday_nightfree1_endtime"
     t.integer "weekday_nightfree1_limittime"
-    t.time "weekday_nightfree2_starttime"
-    t.time "weekday_nightfree2_endtime"
+    t.datetime "weekday_nightfree2_starttime"
+    t.datetime "weekday_nightfree2_endtime"
     t.integer "weekday_nightfree2_limittime"
-    t.time "holiday_dayfree1_starttime"
-    t.time "holiday_dayfree1_endtime"
+    t.datetime "holiday_dayfree1_starttime"
+    t.datetime "holiday_dayfree1_endtime"
     t.integer "holiday_dayfree1_limittime"
-    t.time "holiday_dayfree2_starttime"
-    t.time "holiday_dayfree2_endtime"
+    t.datetime "holiday_dayfree2_starttime"
+    t.datetime "holiday_dayfree2_endtime"
     t.integer "holiday_dayfree2_limittime"
-    t.time "holiday_nightfree1_starttime"
-    t.time "holiday_nightfree1_endtime"
+    t.datetime "holiday_nightfree1_starttime"
+    t.datetime "holiday_nightfree1_endtime"
     t.integer "holiday_nightfree1_limittime"
-    t.time "holiday_nightfree2_starttime"
-    t.time "holiday_nightfree2_endtime"
+    t.datetime "holiday_nightfree2_starttime"
+    t.datetime "holiday_nightfree2_endtime"
     t.integer "holiday_nightfree2_limittime"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -85,8 +85,8 @@ ActiveRecord::Schema.define(version: 20180213190844) do
 
   create_table "shoptime_data", force: :cascade do |t|
     t.string "date"
-    t.time "open_time"
-    t.time "close_time"
+    t.datetime "open_time"
+    t.datetime "close_time"
     t.string "nightstart_time"
     t.integer "karaoke_shop_id"
     t.datetime "created_at", null: false

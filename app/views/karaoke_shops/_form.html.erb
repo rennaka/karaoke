@@ -25,204 +25,234 @@
 
   <div class="field">
     <%= form.label :weekday_day_price %>
-    <%= form.number_field :weekday_day_price %>
+    <%= number_field_tag "member_price_data[weekday_day_price]", :weekday_day_price %>
   </div>
 
   <div class="field">
     <%= form.label :holiday_day_price %>
-    <%= form.number_field :holiday_day_price %>
+    <%= number_field_tag "member_price_data[holiday_day_price]", :holiday_day_price %>
   </div>
 
   <div class="field">
     <%= form.label :weekday_night_price %>
-    <%= form.number_field :weekday_night_price %>
+    <%= number_field_tag "member_price_data[weekday_night_price]", :weekday_night_price %>
   </div>
 
   <div class="field">
     <%= form.label :holiday_night_price %>
-    <%= form.number_field :holiday_night_price %>
+    <%= number_field_tag "member_price_data[holiday_night_price]", :holiday_night_price %>
   </div>
 
   <div class="field">
     <%= form.label :weekday_dayfree1_price %>
-    <%= form.number_field :weekday_dayfree1_price %>
+    <%= number_field_tag "member_price_data[weekday_dayfree1_price]", :weekday_dayfree1_price %>
   </div>
 
   <div class="field">
     <%= form.label :holiday_dayfree1_price %>
-    <%= form.number_field :holiday_dayfree1_price %>
+    <%= number_field_tag "member_price_data[holiday_dayfree1_price]", :holiday_dayfree1_price %>
   </div>
 
   <div class="field">
     <%= form.label :weekday_nightfree1_price %>
-    <%= form.number_field :weekday_nightfree1_price %>
+    <%= number_field_tag "member_price_data[weekday_nightfree1_price]", :weekday_nightfree1_price %>
   </div>
 
   <div class="field">
     <%= form.label :holiday_nightfree1_price %>
-    <%= form.number_field :holiday_nightfree1_price %>
+    <%= number_field_tag "member_price_data[holiday_nightfree1_price]", :holiday_nightfree1_price %>
   </div>
 
   <div class="field">
     <%= form.label :weekday_dayfree2_price %>
-    <%= form.number_field :weekday_dayfree2_price %>
+    <%= number_field_tag "member_price_data[weekday_dayfree2_price]", :weekday_dayfree2_price %>
   </div>
 
   <div class="field">
     <%= form.label :holiday_dayfree2_price %>
-    <%= form.number_field :holiday_dayfree2_price %>
+    <%= number_field_tag "member_price_data[holiday_dayfree2_price]", :holiday_dayfree2_price %>
   </div>
 
   <div class="field">
     <%= form.label :weekday_nightfree2_price %>
-    <%= form.number_field :weekday_nightfree2_price %>
+    <%= number_field_tag "member_price_data[weekday_nightfree2_price]", :weekday_nightfree2_price %>
   </div>
 
   <div class="field">
     <%= form.label :holiday_nightfree2_price %>
-    <%= form.number_field :holiday_nightfree2_price %>
+    <%= number_field_tag "member_price_data[holiday_nightfree2_price]", :holiday_nightfree2_price %>
   </div>
 
   <h2> フリータイムデータ　</h2>
 
   <div class="field">
     <%= form.label :weekday_dayfree1_starttime %>
-    <%= form.time_select :weekday_dayfree1_starttime %>
+    <%= time_select "freetime_data[weekday_dayfree1_starttime]", :weekday_dayfree1_starttime, {minute_step: 10, include_blank: true} %>
   </div>
 
   <div class="field">
     <%= form.label :weekday_dayfree1_endtime %>
-    <%= form.time_select :weekday_dayfree1_endtime %>
+    <%= time_select "freetime_data[weekday_dayfree1_endtime]", :weekday_dayfree1_endtime, {minute_step: 10, include_blank: true} %>
   </div>
 
   <div class="field">
     <%= form.label :weekday_dayfree1_limittime %>
-    <%= form.time_select :weekday_dayfree1_limittime %>
+    <%= number_field_tag "freetime_data[weekday_dayfree1_limittime]", :weekday_dayfree1_limittime %>時間
   </div>
 
   <div class="field">
     <%= form.label :holiday_dayfree1_starttime %>
-    <%= form.time_select :holiday_dayfree1_starttime %>
+    <%= time_select "freetime_data[holiday_dayfree1_starttime]", :holiday_dayfree1_starttime, {minute_step: 10, include_blank: true} %>
   </div>
 
   <div class="field">
     <%= form.label :holiday_dayfree1_endtime %>
-    <%= form.time_select :holiday_dayfree1_endtime %>
+    <%= time_select "freetime_data[holiday_dayfree1_endtime]", :holiday_dayfree1_endtime, {minute_step: 10, include_blank: true} %>
   </div>
 
   <div class="field">
     <%= form.label :holiday_dayfree1_limittime %>
-    <%= form.time_select :holiday_dayfree1_limittime %>
+    <%= number_field_tag "freetime_data[holiday_dayfree1_limittime]", :holiday_dayfree1_limittime %>時間
   </div>
 
   <div class="field">
     <%= form.label :weekday_nightfree1_starttime %>
-    <%= form.time_select :weekday_nightfree1_starttime %>
+    <%= time_select "freetime_data[weekday_nightfree1_starttime]", :weekday_nightfree1_starttime, {minute_step: 10, include_blank: true} %>
   </div>
 
   <div class="field">
     <%= form.label :weekday_nightfree1_endtime %>
-    <%= form.time_select :weekday_nightfree1_endtime %>
+    <%= time_select "freetime_data[weekday_nightfree1_endtime]", :weekday_nightfree1_endtime, {minute_step: 10, include_blank: true} %>
   </div>
 
   <div class="field">
     <%= form.label :weekday_nightfree1_limittime %>
-    <%= form.time_select :weekday_nightfree1_limittime %>
+    <%= number_field_tag "freetime_data[weekday_nightfree1_limittime]", :weekday_nightfree1_limittime %>時間
   </div>
 
   <div class="field">
     <%= form.label :holiday_nightfree1_starttime %>
-    <%= form.time_select :holiday_nightfree1_starttime %>
+    <%= time_select "freetime_data[holiday_nightfree1_starttime]", :holiday_nightfree1_starttime, {minute_step: 10, include_blank: true} %>
   </div>
 
   <div class="field">
     <%= form.label :holiday_nightfree1_endtime %>
-    <%= form.time_select :holiday_nightfree1_endtime %>
+    <%= time_select "freetime_data[holiday_nightfree1_endtime]", :holiday_nightfree1_endtime, {minute_step: 10, include_blank: true} %>
   </div>
 
   <div class="field">
     <%= form.label :holiday_nightfree1_limittime %>
-    <%= form.time_select :holiday_nightfree1_limittime %>
+    <%= number_field_tag "freetime_data[holiday_nightfree1_limittime]", :holiday_nightfree1_limittime %>時間
   </div>
 
   <div class="field">
     <%= form.label :weekday_dayfree2_starttime %>
-    <%= form.time_select :weekday_dayfree2_starttime %>
+    <%= time_select "freetime_data[weekday_dayfree2_starttime]", :weekday_dayfree2_starttime, {minute_step: 10, include_blank: true} %>
   </div>
 
   <div class="field">
     <%= form.label :weekday_dayfree2_endtime %>
-    <%= form.time_select :weekday_dayfree2_endtime %>
+    <%= time_select "freetime_data[weekday_dayfree2_endtime]", :weekday_dayfree2_endtime, {minute_step: 10, include_blank: true} %>
   </div>
 
   <div class="field">
     <%= form.label :weekday_dayfree2_limittime %>
-    <%= form.time_select :weekday_dayfree2_limittime %>
+    <%= number_field_tag "freetime_data[weekday_dayfree2_limittime]", :weekday_dayfree2_limittime %>時間
   </div>
 
   <div class="field">
     <%= form.label :holiday_dayfree2_starttime %>
-    <%= form.time_select :holiday_dayfree2_starttime %>
+    <%= time_select "freetime_data[holiday_dayfree2_starttime]", :holiday_dayfree2_starttime, {minute_step: 10, include_blank: true} %>
   </div>
 
   <div class="field">
     <%= form.label :holiday_dayfree2_endtime %>
-    <%= form.time_select :holiday_dayfree2_endtime %>
+    <%= time_select "freetime_data[holiday_dayfree2_endtime]", :holiday_dayfree2_endtime, {minute_step: 10, include_blank: true} %>
   </div>
 
   <div class="field">
     <%= form.label :holiday_dayfree2_limittime %>
-    <%= form.time_select :holiday_dayfree2_limittime %>
+    <%= number_field_tag "freetime_data[holiday_dayfree2_limittime]", :holiday_dayfree2_limittime %>時間
   </div>
 
   <div class="field">
     <%= form.label :weekday_nightfree2_starttime %>
-    <%= form.time_select :weekday_nightfree2_starttime %>
+    <%= time_select "freetime_data[weekday_nightfree2_starttime]", :weekday_nightfree2_starttime, {minute_step: 10, include_blank: true} %>
   </div>
 
   <div class="field">
     <%= form.label :weekday_nightfree2_endtime %>
-    <%= form.time_select :weekday_nightfree2_endtime %>
+    <%= time_select "freetime_data[weekday_nightfree2_endtime]", :weekday_nightfree2_endtime, {minute_step: 10, include_blank: true} %>
   </div>
 
   <div class="field">
     <%= form.label :weekday_nightfree2_limittime %>
-    <%= form.time_select :weekday_nightfree2_limittime %>
+    <%= number_field_tag "freetime_data[weekday_nightfree2_limittime]", :weekday_nightfree2_limittime %>時間
   </div>
 
   <div class="field">
     <%= form.label :holiday_nightfree2_starttime %>
-    <%= form.time_select :holiday_nightfree2_starttime %>
+    <%= time_select "freetime_data[holiday_nightfree2_starttime]", :holiday_nightfree2_starttime, {minute_step: 10, include_blank: true} %>
   </div>
 
   <div class="field">
     <%= form.label :holiday_nightfree2_endtime %>
-    <%= form.time_select :holiday_nightfree2_endtime %>
+    <%= time_select "freetime_data[holiday_nightfree2_endtime]", :holiday_nightfree2_endtime, {minute_step: 10, include_blank: true} %>
   </div>
 
   <div class="field">
     <%= form.label :holiday_nightfree2_limittime %>
-    <%= form.time_select :holiday_nightfree2_limittime %>
+    <%= number_field_tag "freetime_data[holiday_nightfree2_limittime]", :holiday_nightfree2_limittime %>時間
   </div>
 
   <h2> 曜日データ　</h2>
-  <table>
+  <table class="table table-striped">
     <thead>
+      <tr>
+        <th>曜日</th>
+        <th>day</th>
+        <th>night</th>
+        <th>day_freetime</th>
+        <th>night_freetime</th>
+      </tr>
     </thead>
+    <tbody>
+      <% EasySettings.date.each_with_index do |date,i| %>
+        <tr>
+          <td><%= date %></td>
+          <td><%= select_tag "date_statuses[date#{i}][day]", options_for_select(EasySettings.date_statuses) %></td>
+          <td><%= select_tag "date_statuses[date#{i}][night]", options_for_select(EasySettings.date_statuses) %></td>
+          <td><%= select_tag "date_statuses[date#{i}][day_freetime]", options_for_select(EasySettings.date_statuses) %></td>
+          <td><%= select_tag "date_statuses[date#{i}][night_freetime]", options_for_select(EasySettings.date_statuses) %></td>
+          <%= hidden_field_tag "date_statuses[date#{i}][date]", date %>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
 
+  <h2> ショップ情報 </h2>
 
-  <%= form.select :karaoke_kind_id, options_for_select(KaraokeKind.pluck(:name, :id))%>
-
-  <div class="field">
-    <%= form.label :open_time %>
-    <%= form.time_select :open_time %>
-  </div>
-
-  <div class="field">
-    <%= form.label :close_time %>
-    <%= form.time_select :close_time %>
-  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>曜日</th>
+        <th>open_time</th>
+        <th>close_time</th>
+        <th>nightstart_time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% EasySettings.date.each_with_index do |date,i| %>
+        <tr>
+          <td><%= date %></td>
+          <td><%= time_select "shoptime_data[date#{i}][open_time]", :open_time, :minute_step => 10 %></td>
+          <td><%= time_select "shoptime_data[date#{i}][close_time]", :close_time, :minute_step => 10 %></td>
+          <td><%= time_select "shoptime_data[date#{i}][night_starttime]", :nightstart_time, :minute_step => 10 %></td>
+          <%= hidden_field_tag "shoptime_data[date#{i}][date]", date %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
   <div class="actions">
     <%= form.submit %>

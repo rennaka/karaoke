@@ -3,6 +3,7 @@ default: &default
   year: 2000
   month: 1
   day: 1
+  date_statuses: ["WEEKDAY","HOLIDAY"]
 development:
   <<: *default
   key2: value2.d

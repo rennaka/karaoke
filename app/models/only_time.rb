@@ -4,8 +4,14 @@ class OnlyTime
   MONTH = EasySettings.month
   DAY = EasySettings.day
 
-  def self.set(hour,minute)
-    Time.zone.local(YEAR,MONTH,DAY,hour,minute)
+  def self.set(time_params)
+    Time.zone.local(YEAR,MONTH,DAY,time_params.values[3],time_params.values[4])
+  end
+
+  def self.set_times(former_time_params,latter_time_params)
+    return {former: nil, latter: nil} if set(former_time_params) == set(latter_time_params)
+    tmp_latter_time = set(latter_time_params)
+    tmp_latter_time > set(former_time_params) ? {former: set(former_time_params), latter: set(latter_time_params)} : {former: set(former_time_params), latter: set(latter_time_params) + 1.day}
   end
 
 end

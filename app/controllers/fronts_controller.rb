@@ -51,11 +51,10 @@ class FrontsController < ApplicationController
     end
 
     def start_time
-      OnlyTime.set(params[:start_time]["start_time(4i)"],params[:start_time]["start_time(5i)"])
+      OnlyTime.set_times(params[:start_time],params[:end_time])[:former]
     end
 
     def end_time
-      tmp_end_time = OnlyTime.set(params[:end_time]["end_time(4i)"],params[:end_time]["end_time(5i)"])
-      tmp_end_time < start_time ? tmp_end_time + 1.days : tmp_end_time
+      OnlyTime.set_times(params[:start_time],params[:end_time])[:latter]
     end
 end
