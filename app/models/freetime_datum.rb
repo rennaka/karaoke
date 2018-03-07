@@ -1,4 +1,5 @@
 class FreetimeDatum < ApplicationRecord
+  belongs_to :karaoke_shop
 
   def to_param(day_is_weekday ,night_is_weekday)
     day_param(day_is_weekday).merge(night_param(night_is_weekday))

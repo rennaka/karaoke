@@ -1,3 +1,24 @@
-<% @shops.each do |shop| %>
-  <%= shop.nightfree1_price %>
-<% end %>
+<h2>検索結果</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>店舗</th>
+      <th>利用形態</th>
+      <th>開始時間</th>
+      <th>終了時間</th>
+      <th>料金</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @all_display_data.each do |display_data| %>
+      <tr>
+        <td><%= display_data.shop_name %></td>
+        <td><%= display_data.type %></td>
+        <td><%= display_data.starttime.strftime("%H:%M") %></td>
+        <td><%= display_data.endtime.strftime("%H:%M") %></td>
+        <td><%= display_data.charge %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

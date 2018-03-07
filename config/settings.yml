@@ -4,6 +4,7 @@ default: &default
   month: 1
   day: 1
   date_statuses: ["WEEKDAY","HOLIDAY"]
+  time_types: ["day","night","dayfree1","dayfree2","nightfree1","nightfree2"]
 development:
   <<: *default
   key2: value2.d

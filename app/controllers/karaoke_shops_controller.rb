@@ -26,9 +26,11 @@ class KaraokeShopsController < ApplicationController
   def create
     @karaoke_shop = KaraokeShop.new(karaoke_shop_params)
       if @karaoke_shop.save
-        @karaoke_shop.create_member_price_datum(member_price_data_params)
-        @karaoke_shop.create_freetime_datum(freetime_data_params)
-
+        # @karaoke_shop.create_member_price_datum(member_price_data_params)
+        # @karaoke_shop.create_freetime_datum(freetime_data_params)
+        @karaoke_shop.create_onedrink_datum(onedrink_data_params)
+        # @karaoke_shop.date_statuses.create(date_statuses_params)
+        # @karaoke_shop.shoptime_data.create(shoptime_data_params)
         redirect_to root_path, notice: 'Karaoke shop was successfully created.'
       else
         render :new
@@ -70,6 +72,27 @@ class KaraokeShopsController < ApplicationController
         holiday_dayfree2_starttime: OnlyTime.set_times(params[:freetime_data][:holiday_dayfree2_starttime],params[:freetime_data][:holiday_dayfree2_endtime])[:former], holiday_dayfree2_endtime: OnlyTime.set_times(params[:freetime_data][:holiday_dayfree2_starttime],params[:freetime_data][:holiday_dayfree2_endtime])[:latter], holiday_dayfree2_limittime: params[:freetime_data][:holiday_dayfree2_limittime],
         holiday_nightfree2_starttime: OnlyTime.set_times(params[:freetime_data][:holiday_nightfree2_starttime],params[:freetime_data][:holiday_nightfree2_endtime])[:former], holiday_nightfree2_endtime: OnlyTime.set_times(params[:freetime_data][:holiday_nightfree2_starttime],params[:freetime_data][:holiday_nightfree2_endtime])[:latter], holiday_nightfree2_limittime: params[:freetime_data][:holiday_nightfree2_limittime],
       }
+    end
+
+    def onedrink_data_params
+      { weekday_day: params[:onedrink_data][:weekday][:day].to_bool, holiday_day: params[:onedrink_data][:holiday][:day].to_bool,
+        weekday_night: params[:onedrink_data][:weekday][:night].to_bool, holiday_night: params[:onedrink_data][:holiday][:night].to_bool,
+        weekday_dayfree1: params[:onedrink_data][:weekday][:dayfree1].to_bool, holiday_dayfree1: params[:onedrink_data][:holiday][:dayfree1].to_bool,
+        weekday_dayfree2: params[:onedrink_data][:weekday][:dayfree2].to_bool, holiday_dayfree2: params[:onedrink_data][:holiday][:dayfree2].to_bool,
+        weekday_nightfree1: params[:onedrink_data][:weekday][:nightfree1].to_bool, holiday_nightfree1: params[:onedrink_data][:holiday][:nightfree1].to_bool,
+        weekday_nightfree2: params[:onedrink_data][:weekday][:nightfree2].to_bool, holiday_nightfree2: params[:onedrink_data][:holiday][:nightfree2].to_bool
+      }
+    end
+
+    def date_statuses_params
+      params[:date_statuses].values
+    end
+
+    def shoptime_data_params
+      params[:shoptime_data].values.map{|data| {open_time: OnlyTime.set_times(data[:open_time],data[:close_time])[:former], close_time: OnlyTime.set_times(data[:open_time],data[:close_time])[:latter],
+                                                nightstart_time: OnlyTime.set(data[:nightstart_time]), nightend_time: OnlyTime.set(data[:open_time]) == OnlyTime.set(data[:close_time]) ? OnlyTime.set(data[:nightend_time]) : nil, date: data[:date]
+                                               }
+                                       }
     end
 
 end

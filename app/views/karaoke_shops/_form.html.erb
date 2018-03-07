@@ -239,16 +239,39 @@
         <th>open_time</th>
         <th>close_time</th>
         <th>nightstart_time</th>
+        <th>nightend_time</th>
       </tr>
     </thead>
     <tbody>
       <% EasySettings.date.each_with_index do |date,i| %>
         <tr>
           <td><%= date %></td>
-          <td><%= time_select "shoptime_data[date#{i}][open_time]", :open_time, :minute_step => 10 %></td>
-          <td><%= time_select "shoptime_data[date#{i}][close_time]", :close_time, :minute_step => 10 %></td>
-          <td><%= time_select "shoptime_data[date#{i}][night_starttime]", :nightstart_time, :minute_step => 10 %></td>
+          <td><%= time_select "shoptime_data[date#{i}][open_time]", :open_time, {minute_step: 10, include_blank: true} %></td>
+          <td><%= time_select "shoptime_data[date#{i}][close_time]", :close_time, {minute_step: 10, include_blank: true} %></td>
+          <td><%= time_select "shoptime_data[date#{i}][nightstart_time]", :nightstart_time, {minute_step: 10, include_blank: true} %></td>
+          <td><%= time_select "shoptime_data[date#{i}][nightend_time]", :nightend_time, {minute_step: 10, include_blank: true} %></td>
           <%= hidden_field_tag "shoptime_data[date#{i}][date]", date %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h2> ワンドリンク情報 </h2>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>type</th>
+        <th>WEEKDAY</th>
+        <th>HOLIDAY</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% EasySettings.time_types.each do |type| %>
+        <tr>
+          <td><%= type %></td>
+          <td><%= select_tag "onedrink_data[weekday][#{type}]", options_for_select([["有",true], ["無", false]]), include_blank: true %></td>
+          <td><%= select_tag "onedrink_data[holiday][#{type}]", options_for_select([["有",true], ["無", false]]), include_blank: true %></td>
         </tr>
       <% end %>
     </tbody>

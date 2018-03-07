@@ -5,6 +5,7 @@ class KaraokeShop < ApplicationRecord
   has_many :shoptime_data, dependent: :delete_all
   has_one :member_price_datum, dependent: :delete
   has_one :freetime_datum, dependent: :delete
+  has_one :onedrink_datum, dependent: :delete
   validates :name, presence: true
 
   def self.create_all(params)
@@ -12,7 +13,7 @@ class KaraokeShop < ApplicationRecord
   end
 
   def object(date,starttime,endtime)
-    KaraokeKind.find(self.karaoke_kind_id).name_of_model.constantize.new(id: self.id, starttime: starttime, endtime: endtime).set_parameters(date)
+    KaraokeKind.find(self.karaoke_kind_id).name_of_model.constantize.new(id: self.id, name: self.name, starttime: starttime, endtime: endtime, karaoke_kind_id: self.karaoke_kind_id).set_parameters(date)
   end
 
   def set_parameters(date)

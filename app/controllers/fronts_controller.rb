@@ -1,13 +1,11 @@
 class FrontsController < ApplicationController
-  before_action :set_shops, only: [:result]
 
   def top
   end
 
   def result
-    @shops.each do |shop|
-      binding.pry
-    end
+    shops = KaraokeShop.all.map { |shop| shop.object(params[:date],start_time,end_time) }
+    @all_display_data = shops.map {|shop| shop.display_data_list}.flatten
   end
 
   def edit
@@ -46,15 +44,12 @@ class FrontsController < ApplicationController
   end
 
   private
-    def set_shops
-      @shops = KaraokeShop.all.map { |shop| shop.object(params[:date],start_time,end_time) }
-    end
 
-    def start_time
-      OnlyTime.set_times(params[:start_time],params[:end_time])[:former]
-    end
+  def start_time
+    OnlyTime.set_times(params[:start_time],params[:end_time])[:former]
+  end
 
-    def end_time
-      OnlyTime.set_times(params[:start_time],params[:end_time])[:latter]
-    end
+  def end_time
+    OnlyTime.set_times(params[:start_time],params[:end_time])[:latter]
+  end
 end

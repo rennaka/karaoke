@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180222163950) do
+ActiveRecord::Schema.define(version: 20180302182450) do
 
   create_table "date_statuses", force: :cascade do |t|
     t.string "date"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20180222163950) do
     t.integer "karaoke_shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "day_freetime"
+    t.string "night_freetime"
   end
 
   create_table "freetime_data", force: :cascade do |t|
@@ -56,6 +58,7 @@ ActiveRecord::Schema.define(version: 20180222163950) do
     t.string "name_of_model"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name_of_price_model"
   end
 
   create_table "karaoke_shops", force: :cascade do |t|
@@ -83,14 +86,33 @@ ActiveRecord::Schema.define(version: 20180222163950) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "onedrink_data", force: :cascade do |t|
+    t.boolean "weekday_day"
+    t.boolean "holiday_day"
+    t.boolean "weekday_night"
+    t.boolean "holiday_night"
+    t.boolean "weekday_dayfree1"
+    t.boolean "holiday_dayfree1"
+    t.boolean "weekday_dayfree2"
+    t.boolean "holiday_dayfree2"
+    t.boolean "weekday_nightfree1"
+    t.boolean "holiday_nightfree1"
+    t.boolean "weekday_nightfree2"
+    t.boolean "holiday_nightfree2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "karaoke_shop_id"
+  end
+
   create_table "shoptime_data", force: :cascade do |t|
     t.string "date"
     t.datetime "open_time"
     t.datetime "close_time"
-    t.string "nightstart_time"
+    t.datetime "nightstart_time"
     t.integer "karaoke_shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "nightend_time"
   end
 
 end
