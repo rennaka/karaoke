@@ -1,5 +1,5 @@
 class KaraokeShop < ApplicationRecord
-  attr_accessor :day_price, :night_price, :dayfree1_price, :nightfree1_price, :open_time, :close_time, :nightstart_time, :dayfree1_starttime, :dayfree1_endtime, :nightfree1_starttime, :nightfree1_endtime, :day_onedrink, :night_onedrink, :day1free_onedrink, :day2free_onedrink, :night1free_onedrink, :night2free_onedrink, :starttime, :endtime
+  attr_accessor :day_price, :night_price, :dayfree1_price, :nightfree1_price, :open_time, :close_time, :nightstart_time, :dayfree1_starttime, :dayfree1_endtime, :nightfree1_starttime, :nightfree1_endtime, :day_onedrink, :night_onedrink, :dayfree1_onedrink, :dayfree2_onedrink, :nightfree1_onedrink, :nightfree2_onedrink, :starttime, :endtime
   belongs_to :karaoke_kind
   has_many :date_statuses, dependent: :delete_all
   has_many :shoptime_data, dependent: :delete_all
@@ -28,7 +28,7 @@ class KaraokeShop < ApplicationRecord
   end
 
   def register_param(date)
-    shop_param.merge(price_param(date)).merge(freetime_param(date))
+    shop_param.merge(price_param(date)).merge(freetime_param(date)).merge(onedrink_param(date))
   end
 
   def shop_param

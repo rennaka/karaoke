@@ -5,7 +5,7 @@ class FrontsController < ApplicationController
 
   def result
     shops = KaraokeShop.all.map { |shop| shop.object(params[:date],start_time,end_time) }
-    @all_display_data = shops.map {|shop| shop.display_data_list}.flatten
+    @all_display_data = shops.map {|shop| shop.display_data_list}.flatten#.select{|display_data| display_data.charge > 0}
   end
 
   def edit

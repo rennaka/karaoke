@@ -1,11 +1,11 @@
 class DisplayData
-  attr_reader :shop_name, :type
+  attr_reader :shop_name, :type, :charge
   ONEDRINK_PRICE = 350
   def initialize(shop_name,data,playtime_range,charge)
     @shop_name = shop_name
     @type = data[:type]
     @freetime_range = data&.[](:range)
-    @onedrink_flag
+    @onedrink_flag = data[:onedrink]
     @starttime = playtime_range.first
     @endtime = playtime_range.last
     @charge = charge

@@ -26,11 +26,13 @@ class Karaokekan < KaraokeShop
   end
 
   def dayfree1_onedrink_flag
-    (playtime_range.cover_range?(dayfree1time_range) ? dayfree1_onedrink : false) || (play_day_time_except(dayfree1time_range) > 0 ? day_onedrink : false) || (play_night_time_except(nightfree1time_range) > 0 ? night_onedrink : false)
+    return false unless playtime_range.cover_range?(dayfree1time_range)
+    dayfree1_onedrink || (play_day_time_except(dayfree1time_range) > 0 ? day_onedrink : false) || (play_night_time_except(nightfree1time_range) > 0 ? night_onedrink : false)
   end
 
   def nightfree1_onedrink_flag
-    (playtime_range.cover_range?(nightfree1time_range) ? nightfree1_onedrink : false) || (play_day_time_except(dayfree1time_range) > 0 ? day_onedrink : false) || (play_night_time_except(nightfree1time_range) > 0 ? night_onedrink : false)
+    return false unless playtime_range.cover_range?(nightfree1time_range)
+    nightfree1_onedrink || (play_day_time_except(dayfree1time_range) > 0 ? day_onedrink : false) || (play_night_time_except(nightfree1time_range) > 0 ? night_onedrink : false)
   end
 
   def dayfree1time_range
@@ -73,7 +75,7 @@ class Karaokekan < KaraokeShop
   end
 
   def play_day_time
-    [nightstart_time,real_endtime].min - real_starttime > 0 ? ([nightstart_time,real_endtime].min - real_starttime) / 1800 : 0
+    [nightstart_time,real_endtime].compact.min - real_starttime > 0 ? ([nightstart_time,real_endtime].compact.min - real_starttime) / 1800 : 0
   end
 
   def play_night_time
@@ -99,11 +101,11 @@ class Karaokekan < KaraokeShop
   end
 
   def play_day_time_before(freetime_range)
-    ([freetime_range.first,nightstart_time].min - real_starttime) > 0 ? ([freetime_range.first,nightstart_time].min - real_starttime) / 1800 : 0
+    ([freetime_range.first,nightstart_time].compact.min - real_starttime) > 0 ? ([freetime_range.first,nightstart_time].compact.min - real_starttime) / 1800 : 0
   end
 
   def play_day_time_after(freetime_range)
-    ([nightstart_time,real_endtime].min - freetime_range.last) > 0 ? ([nightstart_time,real_endtime].min - freetime_range.last) / 1800 : 0
+    ([nightstart_time,real_endtime].compact.min - freetime_range.last) > 0 ? ([nightstart_time,real_endtime].compact.min - freetime_range.last) / 1800 : 0
   end
 
   def play_night_time_before(freetime_range)
