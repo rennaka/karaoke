@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180302182450) do
+ActiveRecord::Schema.define(version: 20180307024258) do
 
   create_table "date_statuses", force: :cascade do |t|
     t.string "date"
@@ -19,8 +19,10 @@ ActiveRecord::Schema.define(version: 20180302182450) do
     t.integer "karaoke_shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "day_freetime"
-    t.string "night_freetime"
+    t.string "day_freetime1"
+    t.string "night_freetime1"
+    t.string "day_freetime2"
+    t.string "night_freetime2"
   end
 
   create_table "freetime_data", force: :cascade do |t|

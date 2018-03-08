@@ -26,11 +26,11 @@ class KaraokeShopsController < ApplicationController
   def create
     @karaoke_shop = KaraokeShop.new(karaoke_shop_params)
       if @karaoke_shop.save
-        # @karaoke_shop.create_member_price_datum(member_price_data_params)
-        # @karaoke_shop.create_freetime_datum(freetime_data_params)
+        @karaoke_shop.create_member_price_datum(member_price_data_params)
+        @karaoke_shop.create_freetime_datum(freetime_data_params)
         @karaoke_shop.create_onedrink_datum(onedrink_data_params)
-        # @karaoke_shop.date_statuses.create(date_statuses_params)
-        # @karaoke_shop.shoptime_data.create(shoptime_data_params)
+        @karaoke_shop.date_statuses.create(date_statuses_params)
+        @karaoke_shop.shoptime_data.create(shoptime_data_params)
         redirect_to root_path, notice: 'Karaoke shop was successfully created.'
       else
         render :new

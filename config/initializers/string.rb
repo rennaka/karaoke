@@ -1,7 +1,11 @@
 class String
 
   def to_bool
-    self == "true" ? true : false
+    self == "true"
+  end
+
+  def weekday?
+    self == "WEEKDAY"
   end
 
 end

@@ -10,15 +10,27 @@ class Karaokekan < KaraokeShop
   private
 
   def normal_data
-    {type: NORMAL}
+    {type: NORMAL, onedrink: normal_onedrink_flag}
   end
 
   def dayfree1_data
-    {range: dayfree1time_range, price: dayfree1_price, type: DAY_FREETIME}
+    {range: dayfree1time_range, price: dayfree1_price, type: DAY_FREETIME, onedrink: dayfree1_onedrink_flag}
   end
 
   def nightfree1_data
-    {range: nightfree1time_range, price: nightfree1_price, type: NIGHT_FREETIME}
+    {range: nightfree1time_range, price: nightfree1_price, type: NIGHT_FREETIME, onedrink: nightfree1_onedrink_flag}
+  end
+
+  def normal_onedrink_flag
+    (play_day_time > 0 ? day_onedrink : false) || (play_night_time > 0 ? night_onedrink : false)
+  end
+
+  def dayfree1_onedrink_flag
+    (playtime_range.cover_range?(dayfree1time_range) ? dayfree1_onedrink : false) || (play_day_time_except(dayfree1time_range) > 0 ? day_onedrink : false) || (play_night_time_except(nightfree1time_range) > 0 ? night_onedrink : false)
+  end
+
+  def nightfree1_onedrink_flag
+    (playtime_range.cover_range?(nightfree1time_range) ? nightfree1_onedrink : false) || (play_day_time_except(dayfree1time_range) > 0 ? day_onedrink : false) || (play_night_time_except(nightfree1time_range) > 0 ? night_onedrink : false)
   end
 
   def dayfree1time_range

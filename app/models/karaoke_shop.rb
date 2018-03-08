@@ -1,5 +1,5 @@
 class KaraokeShop < ApplicationRecord
-  attr_accessor :day_price, :night_price, :dayfree1_price, :nightfree1_price, :open_time, :close_time, :nightstart_time, :dayfree1_starttime, :dayfree1_endtime, :nightfree1_starttime, :nightfree1_endtime, :starttime, :endtime
+  attr_accessor :day_price, :night_price, :dayfree1_price, :nightfree1_price, :open_time, :close_time, :nightstart_time, :dayfree1_starttime, :dayfree1_endtime, :nightfree1_starttime, :nightfree1_endtime, :day_onedrink, :night_onedrink, :day1free_onedrink, :day2free_onedrink, :night1free_onedrink, :night2free_onedrink, :starttime, :endtime
   belongs_to :karaoke_kind
   has_many :date_statuses, dependent: :delete_all
   has_many :shoptime_data, dependent: :delete_all
@@ -23,12 +23,8 @@ class KaraokeShop < ApplicationRecord
 
   private
 
-  def day_is_weekday?(date)
-    DateStatus.find_by(karaoke_shop_id: self.id, date: date).day == "WEEKDAY"
-  end
-
-  def night_is_weekday?(date)
-    DateStatus.find_by(karaoke_shop_id: self.id, date: date).night == "WEEKDAY"
+  def date_status(date)
+    DateStatus.find_by(karaoke_shop_id: self.id, date: date).to_param
   end
 
   def register_param(date)
@@ -40,11 +36,15 @@ class KaraokeShop < ApplicationRecord
   end
 
   def freetime_param(date)
-    FreetimeDatum.find_by(karaoke_shop_id: self.id).to_param(day_is_weekday?(date), night_is_weekday?(date))
+    FreetimeDatum.find_by(karaoke_shop_id: self.id).to_param(date_status(date))
   end
 
   def price_param(date)
-    MemberPriceDatum.find_by(karaoke_shop_id: self.id).to_param(day_is_weekday?(date), night_is_weekday?(date))
+    MemberPriceDatum.find_by(karaoke_shop_id: self.id).to_param(date_status(date))
+  end
+
+  def onedrink_param(date)
+    OnedrinkDatum.find_by(karaoke_shop_id: self.id).to_param(date_status(date))
   end
 
 end
