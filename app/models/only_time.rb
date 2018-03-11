@@ -3,6 +3,9 @@ class OnlyTime
   YEAR = EasySettings.year
   MONTH = EasySettings.month
   DAY = EasySettings.day
+  BEFORE_TIME = Time.zone.local(YEAR - 1,MONTH,DAY,0,0)
+  AFTER_TIME = Time.zone.local(YEAR + 1,MONTH,DAY,0,0)
+
 
   def self.set(time_params)
     Time.zone.local(YEAR,MONTH,DAY,time_params.values[3],time_params.values[4])

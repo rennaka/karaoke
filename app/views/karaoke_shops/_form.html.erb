@@ -212,8 +212,10 @@
         <th>曜日</th>
         <th>day</th>
         <th>night</th>
-        <th>day_freetime</th>
-        <th>night_freetime</th>
+        <th>day_freetime1</th>
+        <th>day_freetime2</th>
+        <th>night_freetime1</th>
+        <th>night_freetime2</th>
       </tr>
     </thead>
     <tbody>
@@ -222,8 +224,10 @@
           <td><%= date %></td>
           <td><%= select_tag "date_statuses[date#{i}][day]", options_for_select(EasySettings.date_statuses) %></td>
           <td><%= select_tag "date_statuses[date#{i}][night]", options_for_select(EasySettings.date_statuses) %></td>
-          <td><%= select_tag "date_statuses[date#{i}][day_freetime]", options_for_select(EasySettings.date_statuses) %></td>
-          <td><%= select_tag "date_statuses[date#{i}][night_freetime]", options_for_select(EasySettings.date_statuses) %></td>
+          <td><%= select_tag "date_statuses[date#{i}][day_freetime1]", options_for_select(EasySettings.date_statuses) %></td>
+          <td><%= select_tag "date_statuses[date#{i}][day_freetime2]", options_for_select(EasySettings.date_statuses) %></td>
+          <td><%= select_tag "date_statuses[date#{i}][night_freetime1]", options_for_select(EasySettings.date_statuses) %></td>
+          <td><%= select_tag "date_statuses[date#{i}][night_freetime2]", options_for_select(EasySettings.date_statuses) %></td>
           <%= hidden_field_tag "date_statuses[date#{i}][date]", date %>
         </tr>
       <% end %>

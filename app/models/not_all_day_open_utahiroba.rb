@@ -1,4 +1,4 @@
-class Karaokekan < KaraokeShop
+class NotAllDayOpenUtahiroba < Utahiroba
   after_initialize :set_parameters, if: :new_record?
   NORMAL = '通常'
   DAY_FREETIME = '昼フリータイム'
