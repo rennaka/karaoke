@@ -1,39 +1,27 @@
 class NotAllDayOpenUtahiroba < Utahiroba
-  after_initialize :set_parameters, if: :new_record?
   NORMAL = '通常'
   DAY_FREETIME = '昼フリータイム'
   NIGHT_FREETIME = '夜フリータイム'
 
   def display_data_list
-    [normal_data,dayfree1_data,nightfree1_data].map{|data| DisplayData.new(self.name,data,playtime_range,charge(data))}.compact
+    [normal_data,dayfree1_data,nightfree1_data].map do |data|
+      calc = CalcNotAllDayOpenUtahiroba.new(id: self.id, name: self.name, starttime: starttime, endtime: endtime, karaoke_kind_id: self.karaoke_kind_id, date: date, freetime_range: data[:range])
+      DisplayData.new(self.name,data,playtime_range,onedrink(calc,data),charge(calc,data))
+    end.compact
   end
 
   private
 
   def normal_data
-    {type: NORMAL, onedrink: normal_onedrink_flag}
+    {type: NORMAL, range: TimeRange.new(nil,nil)}
   end
 
   def dayfree1_data
-    {range: dayfree1time_range, price: dayfree1_price, type: DAY_FREETIME, onedrink: dayfree1_onedrink_flag}
+    {range: dayfree1time_range, price: dayfree1_price, type: DAY_FREETIME, onedrink: dayfree1_onedrink}
   end
 
   def nightfree1_data
-    {range: nightfree1time_range, price: nightfree1_price, type: NIGHT_FREETIME, onedrink: nightfree1_onedrink_flag}
-  end
-
-  def normal_onedrink_flag
-    (play_day_time > 0 ? day_onedrink : false) || (play_night_time > 0 ? night_onedrink : false)
-  end
-
-  def dayfree1_onedrink_flag
-    return false unless playtime_range.cover_range?(dayfree1time_range)
-    dayfree1_onedrink || (play_day_time_except(dayfree1time_range) > 0 ? day_onedrink : false) || (play_night_time_except(nightfree1time_range) > 0 ? night_onedrink : false)
-  end
-
-  def nightfree1_onedrink_flag
-    return false unless playtime_range.cover_range?(nightfree1time_range)
-    nightfree1_onedrink || (play_day_time_except(dayfree1time_range) > 0 ? day_onedrink : false) || (play_night_time_except(nightfree1time_range) > 0 ? night_onedrink : false)
+    {range: nightfree1time_range, price: nightfree1_price, type: NIGHT_FREETIME, onedrink: nightfree1_onedrink}
   end
 
   def dayfree1time_range
@@ -72,69 +60,12 @@ class NotAllDayOpenUtahiroba < Utahiroba
     tmp_endtime > close_time ? close_time : tmp_endtime
   end
 
-  # 料金計算関連
-
-  def charge(data)
-    (data[:type] == NORMAL) ? normal_charge : freetime_charge(data[:range],data[:price])
+  def charge(calc,data)
+    (data[:type] == NORMAL) ? calc.normal_charge : calc.freetime_charge(data[:price])
   end
 
-  def normal_charge
-    play_day_time.ceil * day_price + play_night_time.ceil * night_price
-  end
-
-  def freetime_charge(freetime_range,freetime_price)
-    return 0 unless playtime_range.cover_range?(freetime_range)
-    freetime_price + play_day_price_except(freetime_range) + play_night_price_except(freetime_range)
-  end
-
-  def play_day_time
-    ([nightstart_time,real_endtime].compact.min - real_starttime).to_non_negative / 1800
-  end
-
-  def play_night_time
-    (real_endtime - [real_starttime,nightstart_time].max).to_non_negative / 1800
-  end
-
-  def play_day_price_except(freetime_range)
-    play_day_time_except(freetime_range) * day_price
-  end
-
-  def play_night_price_except(freetime_range)
-    play_night_time_except(freetime_range) * night_price
-  end
-
-  # フリータイムの時間計算関連
-
-  def play_day_time_except(freetime_range)
-    (play_day_time_before(freetime_range) + play_day_time_after(freetime_range)).ceil
-  end
-
-  def play_night_time_except(freetime_range)
-    (play_night_time_before(freetime_range) + play_night_time_after(freetime_range)).ceil
-  end
-
-  def playtime_range_before(freetime_range)
-    TimeRange.new(real_starttime,freetime_range.first)
-  end
-
-  def playtime_range_after(freetime_range)
-    TimeRange.new(freetime_range.last,real_endtime)
-  end
-
-  def play_day_time_before(freetime_range)
-    playtime_range_before(freetime_range).has_time_in(daytime_range)
-  end
-
-  def play_day_time_after(freetime_range)
-    playtime_range_after(freetime_range).has_time_in(daytime_range)
-  end
-
-  def play_night_time_before(freetime_range)
-    playtime_range_before(freetime_range).has_time_in(nighttime_range)
-  end
-
-  def play_night_time_after(freetime_range)
-    playtime_range_after(freetime_range).has_time_in(nighttime_range)
+  def onedrink(calc,data)
+    (data[:type] == NORMAL) ? calc.normal_onedrink_flag : calc.freetime_onedrink_flag(data[:onedrink])
   end
 
 end

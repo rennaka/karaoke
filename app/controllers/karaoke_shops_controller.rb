@@ -55,7 +55,7 @@ class KaraokeShopsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def karaoke_shop_params
-      params.require(:karaoke_shop).permit(:name, :karaoke_kind_id)
+      params.require(:karaoke_shop).permit(:name, :karaoke_kind_id, :tax_include)
     end
 
     def member_price_data_params

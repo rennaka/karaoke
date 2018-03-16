@@ -1,0 +1,3 @@
+class NotAllDayOpenTetsujin < Tetsujin
+
+end

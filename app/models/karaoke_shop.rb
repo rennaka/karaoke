@@ -8,10 +8,6 @@ class KaraokeShop < ApplicationRecord
   has_one :onedrink_datum, dependent: :delete
   validates :name, presence: true
 
-  def self.create_all(params)
-
-  end
-
   def object(date,starttime,endtime)
     KaraokeKind.find(self.karaoke_kind_id).name_of_model.constantize.new(id: self.id, name: self.name, starttime: starttime, endtime: endtime, karaoke_kind_id: self.karaoke_kind_id, date: date)
   end

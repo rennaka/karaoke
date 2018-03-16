@@ -21,6 +21,11 @@
     <%= form.select :karaoke_kind_id, options_for_select(KaraokeKind.pluck(:name, :id))%>
   </div>
 
+  <div class="field">
+    <%= form.label :tax_include %>
+    <%= form.select :tax_include, options_for_select([["税込",true], ["税抜", false]])%>
+  </div>
+
   <h2> プライスデータ　</h2>
 
   <div class="field">
@@ -87,7 +92,7 @@
 
   <div class="field">
     <%= form.label :weekday_dayfree1_starttime %>
-    <%= time_select "freetime_data[weekday_dayfree1_starttime]", :weekday_dayfree1_starttime, {minute_step: 10, include_blank: true} %>
+    <%= time_select "freetime_data[weekday_dayfree1_starttime]", :weekday_dayfree1_starttime, {minute_step: 10, prompt: {year: 2010}, include_blank: true} %>
   </div>
 
   <div class="field">
