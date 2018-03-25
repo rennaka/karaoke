@@ -1,24 +1,102 @@
 <h2>検索結果</h2>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>店舗</th>
-      <th>利用形態</th>
-      <th>開始時間</th>
-      <th>終了時間</th>
-      <th>料金</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @all_display_data.each do |display_data| %>
-      <tr>
-        <td><%= display_data.shop_name %></td>
-        <td><%= display_data.type %></td>
-        <td><%= display_data.starttime.strftime("%H:%M") %></td>
-        <td><%= display_data.endtime.strftime("%H:%M") %></td>
-        <td><%= display_data.price %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div>
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="active" role="presentation">
+      <a aria-controls="tab_a" data-toggle="tab" href="#tab_a" role="tab">料金順</a>
+    </li>
+    <li role="presentation">
+      <a aria-controls="tab_b" data-toggle="tab" href="#tab_b" role="tab">店舗順</a>
+    </li>
+    <li role="presentation">
+      <a aria-controls="tab_c" data-toggle="tab" href="#tab_c" role="tab">フリードリンクのみ表示</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab_a" role="tabpanel">
+      <p>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>店舗</th>
+              <th>利用形態</th>
+              <th>ドリンク形態</th>
+              <th>開始時間</th>
+              <th>終了時間</th>
+              <th>料金</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @all_display_data.each do |display_data| %>
+              <tr>
+                <td><%= display_data.shop_name %></td>
+                <td><%= display_data.type %></td>
+                <td><%= display_data.onedrink_price == 0 ? 'フリードリンク' : 'ワンドリンク制' %></td>
+                <td><%= display_data.starttime.strftime("%H:%M") %></td>
+                <td><%= display_data.endtime.strftime("%H:%M") %></td>
+                <td><%= display_data.price %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </p>
+    </div>
+    <div class="tab-pane" id="tab_b" role="tabpanel">
+      <p>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>店舗</th>
+              <th>利用形態</th>
+              <th>ドリンク形態</th>
+              <th>開始時間</th>
+              <th>終了時間</th>
+              <th>料金</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @all_display_data.sort{|a,b| (a.karaoke_kind_id <=> b.karaoke_kind_id).notzero? || (a.price <=> b.price) }.each do |display_data| %>
+              <tr>
+                <td><%= display_data.shop_name %></td>
+                <td><%= display_data.type %></td>
+                <td><%= display_data.onedrink_price == 0 ? 'フリードリンク' : 'ワンドリンク制' %></td>
+                <td><%= display_data.starttime.strftime("%H:%M") %></td>
+                <td><%= display_data.endtime.strftime("%H:%M") %></td>
+                <td><%= display_data.price %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </p>
+    </div>
+    <div class="tab-pane" id="tab_c" role="tabpanel">
+      <p>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>店舗</th>
+              <th>利用形態</th>
+              <th>ドリンク形態</th>
+              <th>開始時間</th>
+              <th>終了時間</th>
+              <th>料金</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @all_display_data.sort_by{|display_data| display_data.price}.each do |display_data| %>
+              <% next if display_data.onedrink_price != 0 %>
+              <tr>
+                <td><%= display_data.shop_name %></td>
+                <td><%= display_data.type %></td>
+                <td>フリードリンク</td>
+                <td><%= display_data.starttime.strftime("%H:%M") %></td>
+                <td><%= display_data.endtime.strftime("%H:%M") %></td>
+                <td><%= display_data.price %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </p>
+    </div>
+  </div>
+</div>

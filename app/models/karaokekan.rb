@@ -7,7 +7,7 @@ class Karaokekan < KaraokeShop
   def display_data_list
     [normal_data,dayfree1_data,nightfree1_data].map do |data|
       calc = CalcKaraokekan.new(id: self.id, name: self.name, starttime: starttime, endtime: endtime, karaoke_kind_id: self.karaoke_kind_id, date: date, freetime_range: data[:range])
-      DisplayData.new(self.name,data,playtime_range,onedrink(calc,data),charge(calc,data))
+      DisplayData.new(self.name,data,playtime_range,onedrink(calc,data),charge(calc,data),self.tax_include,karaoke_kind_id)
     end.compact
   end
 
@@ -42,11 +42,11 @@ class Karaokekan < KaraokeShop
   end
 
   def daytime_range
-    TimeRange.new(OnlyTime::BEFORE_TIME,nightstart_time)
+    TimeRange.new(OnlyTime::DEFAULT_OPEN_TIME,nightstart_time)
   end
 
   def nighttime_range
-    TimeRange.new(nightstart_time,OnlyTime::AFTER_TIME)
+    TimeRange.new(nightstart_time,OnlyTime::DEFAULT_CLOSE_TIME)
   end
 
   def real_starttime

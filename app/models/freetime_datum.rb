@@ -35,6 +35,7 @@ class FreetimeDatum < ApplicationRecord
     { dayfree1_starttime: weekday_dayfree1_starttime,
       dayfree1_endtime: weekday_dayfree1_endtime,
       dayfree1_limittime: weekday_dayfree1_limittime,
+      dayfree1_start_limittime: weekday_dayfree1_start_limittime,
     }.delete_if{|key,value| value == 0 || value.nil?}
   end
 
@@ -42,6 +43,7 @@ class FreetimeDatum < ApplicationRecord
     { dayfree2_starttime: weekday_dayfree2_starttime,
       dayfree2_endtime: weekday_dayfree2_endtime,
       dayfree2_limittime: weekday_dayfree2_limittime,
+      dayfree2_start_limittime: weekday_dayfree2_start_limittime,
     }.delete_if{|key,value| value == 0 || value.nil?}
   end
 
@@ -49,6 +51,7 @@ class FreetimeDatum < ApplicationRecord
     { nightfree1_starttime: weekday_nightfree1_starttime,
       nightfree1_endtime: weekday_nightfree1_endtime,
       nightfree1_limittime: weekday_nightfree1_limittime,
+      nightfree1_start_limittime: weekday_nightfree1_start_limittime,
     }.delete_if{|key,value| value == 0 || value.nil?}
   end
 
@@ -56,6 +59,7 @@ class FreetimeDatum < ApplicationRecord
     { nightfree2_starttime: weekday_nightfree2_starttime,
       nightfree2_endtime: weekday_nightfree2_endtime,
       nightfree2_limittime: weekday_nightfree2_limittime,
+      nightfree2_start_limittime: weekday_nightfree2_start_limittime,
     }.delete_if{|key,value| value == 0 || value.nil?}
   end
 
@@ -63,6 +67,7 @@ class FreetimeDatum < ApplicationRecord
     { dayfree1_starttime: holiday_dayfree1_starttime,
       dayfree1_endtime: holiday_dayfree1_endtime,
       dayfree1_limittime: holiday_dayfree1_limittime,
+      dayfree1_start_limittime: holiday_dayfree1_start_limittime,
     }.delete_if{|key,value| value == 0 || value.nil?}
   end
 
@@ -70,6 +75,7 @@ class FreetimeDatum < ApplicationRecord
     { dayfree2_starttime: holiday_dayfree2_starttime,
       dayfree2_endtime: holiday_dayfree2_endtime,
       dayfree2_limittime: holiday_dayfree2_limittime,
+      dayfree2_start_limittime: holiday_dayfree2_start_limittime,
     }.delete_if{|key,value| value == 0 || value.nil?}
   end
 
@@ -77,6 +83,7 @@ class FreetimeDatum < ApplicationRecord
     { nightfree1_starttime: holiday_nightfree1_starttime,
       nightfree1_endtime: holiday_nightfree1_endtime,
       nightfree1_limittime: holiday_nightfree1_limittime,
+      nightfree1_start_limittime: holiday_nightfree1_start_limittime,
     }.delete_if{|key,value| value == 0 || value.nil?}
   end
 
@@ -84,6 +91,7 @@ class FreetimeDatum < ApplicationRecord
     { nightfree2_starttime: holiday_nightfree2_starttime,
       nightfree2_endtime: holiday_nightfree2_endtime,
       nightfree2_limittime: holiday_nightfree2_limittime,
+      nightfree2_start_limittime: holiday_nightfree2_start_limittime,
     }.delete_if{|key,value| value == 0 || value.nil?}
   end
 

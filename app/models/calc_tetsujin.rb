@@ -1,19 +1,34 @@
-class CalcAllDayOpenUtahiroba < AllDayOpenUtahiroba
-  attr_accessor :freetime_range
+class CalcTetsujin < Tetsujin
+  attr_accessor :freetime_range, :limittime_range
 
-  def playtime_range
+  def set_playtime_range
+    @playtime_range = select_playtime_range
+    self
+  end
+
+  def select_playtime_range
+    return playtime_yesterday_range if playtime_yesterday_range.cover_range?(freetime_range)
     return playtime_tomorrow_range if playtime_tomorrow_range.cover_range?(freetime_range)
     playtime_today_range
   end
 
+  def playtime_range
+    @playtime_range
+  end
+
   # ワンドリンク関連
+
+  def freetime_used?
+    return @playtime_range.cover_range?(freetime_range) if limittime_range.nil?
+    @playtime_range.cover_range?(limittime_range)
+  end
 
   def normal_onedrink_flag
     (play_day_time > 0 ? day_onedrink : false) || (play_night_time > 0 ? night_onedrink : false)
   end
 
   def freetime_onedrink_flag(freetime_onedrink)
-    return false unless playtime_range.cover_range?(freetime_range)
+    return false unless freetime_used?
     freetime_onedrink || (play_day_time_except_freetime > 0 ? day_onedrink : false) || (play_night_time_except_freetime > 0 ? night_onedrink : false)
   end
 
@@ -22,11 +37,11 @@ class CalcAllDayOpenUtahiroba < AllDayOpenUtahiroba
   end
 
   def play_time
-    (playtime_range.last - playtime_range.first) / 1800
+    (@playtime_range.last - @playtime_range.first) / 1800
   end
 
   def play_day_time
-    daytime_ranges.map{|daytime_range| playtime_range.has_time_in(daytime_range)}.inject(:+)
+    daytime_ranges.map{|daytime_range| @playtime_range.has_time_in(daytime_range)}.inject(:+)
   end
 
   def play_night_time
@@ -34,7 +49,7 @@ class CalcAllDayOpenUtahiroba < AllDayOpenUtahiroba
   end
 
   def freetime_charge(freetime_price)
-    return 0 unless playtime_range.cover_range?(freetime_range)
+    return 0 unless freetime_used?
     freetime_price + play_day_price_except_freetime + play_night_price_except_freetime
   end
 
@@ -57,11 +72,11 @@ class CalcAllDayOpenUtahiroba < AllDayOpenUtahiroba
   end
 
   def playtime_range_before_freetime
-    TimeRange.new(playtime_range.first,freetime_range.first)
+    TimeRange.new(@playtime_range.first,freetime_range.first)
   end
 
   def playtime_range_after_freetime
-    TimeRange.new(freetime_range.last,playtime_range.last)
+    TimeRange.new(freetime_range.last,@playtime_range.last)
   end
 
   def playtime_before_freetime

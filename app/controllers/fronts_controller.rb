@@ -4,7 +4,8 @@ class FrontsController < ApplicationController
   end
 
   def result
-    shops = KaraokeShop.all.map { |shop| shop.object(params[:date],start_time,end_time) }
+    return @all_display_data = [] if start_time == end_time
+    shops = KaraokeShop.where(karaoke_kind_id: params[:kind]&.values).map { |shop| shop.object(params[:date],start_time,end_time) }
     @all_display_data = shops.map {|shop| shop.display_data_list}.flatten#.select{|display_data| display_data.charge > 0}
   end
 
@@ -46,10 +47,10 @@ class FrontsController < ApplicationController
   private
 
   def start_time
-    OnlyTime.set_times(params[:start_time],params[:end_time])[:former]
+    OnlyTime.freetime(params[:start_time],params[:end_time])[:starttime]
   end
 
   def end_time
-    OnlyTime.set_times(params[:start_time],params[:end_time])[:latter]
+    OnlyTime.freetime(params[:start_time],params[:end_time])[:endtime]
   end
 end
