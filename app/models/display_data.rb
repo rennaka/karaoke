@@ -1,8 +1,8 @@
 class DisplayData
-  attr_reader :shop_name, :type, :charge, :onedrink_price, :karaoke_kind_id
+  attr_reader :shop_name, :type, :charge, :onedrink_price, :karaoke_kind_id, :homepage_link
   ONEDRINK_PRICE = 350
   TAX_RATE = 0.08
-  def initialize(shop_name,data,playtime_range,onedrink_flag,charge,tax_include,karaoke_kind_id)
+  def initialize(shop_name,data,playtime_range,onedrink_flag,charge,tax_include,karaoke_kind_id,homepage_link)
     @shop_name = shop_name
     @type = data[:type]
     @freetime_range = data&.[](:range)
@@ -12,6 +12,7 @@ class DisplayData
     @charge = charge
     @tax_include = tax_include
     @karaoke_kind_id = karaoke_kind_id
+    @homepage_link = homepage_link
   end
 
   def starttime

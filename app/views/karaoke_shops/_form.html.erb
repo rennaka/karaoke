@@ -22,6 +22,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :area_id %>
+    <%= form.select :area_id, options_for_select(Area.pluck(:name, :id))%>
+  </div>
+
+  <div class="field">
     <%= form.label :tax_include %>
     <%= form.select :tax_include, options_for_select([["税込",true], ["税抜", false]])%>
   </div>

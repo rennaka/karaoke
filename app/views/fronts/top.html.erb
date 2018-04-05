@@ -1,53 +1,5 @@
-<p id="notice"><%= notice %></p>
 
-<h1>カラオケ料金検索</h1>
 
-<%= form_with(url: result_path, local: true) do |form| %>
+<%= link_to '料金検索', calc_price_form_path, class:"btn btn-primary" %>
 
-  <div class="field">
-    <%= form.label :date, "曜日" %>
-    <%= select_tag "[date]", options_for_select(EasySettings.date) %>
-  </div>
-
-  <div class="field">
-    <%= form.label :start_time, "開始時間" %>
-    <%= time_select "[start_time]", :start_time, :minute_step => 10 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :end_time, "終了時間" %>
-    <%= time_select "[end_time]", :end_time, :minute_step => 10 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :display_kind, "表示店舗" %>
-  </div>
-
-  <div class="field">
-    <%= check_box_tag "kind[karaokekan]", 1, true, {} %>カラオケ館
-  </div>
-
-  <div class="field">
-    <%= check_box_tag "kind[utahiroba]", 2, true, {} %>歌広場
-  </div>
-
-  <div class="field">
-    <%= check_box_tag "kind[tetsujin]", 3, true, {} %>カラオケの鉄人
-  </div>
-
-  <div class="field">
-    <%= check_box_tag "kind[bigecoh]", 4, true, {} %>ビッグエコー
-  </div>
-
-  <div class="field">
-    <%= check_box_tag "kind[banban]", 5, true, {} %>カラオケバンバン
-  </div>
-
-  <div class="actions">
-    <%= form.submit "料金を計算", class:"btn btn-primary" %>
-  </div>
-
-<% end %>
-
-<br>
-<%= link_to '新規店舗登録', new_karaoke_shop_path, class:"btn btn-primary" %>
+<%= link_to '店舗検索', karaoke_map_path, class:"btn btn-primary" %>

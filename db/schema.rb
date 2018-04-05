@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180311084347) do
+ActiveRecord::Schema.define(version: 20180401015950) do
+
+  create_table "areas", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "date_statuses", force: :cascade do |t|
     t.string "date"
@@ -77,13 +83,16 @@ ActiveRecord::Schema.define(version: 20180311084347) do
     t.datetime "updated_at", null: false
     t.integer "karaoke_kind_id"
     t.boolean "tax_include"
+    t.integer "area_id"
+    t.text "homepage_link"
+    t.string "address"
   end
 
   create_table "member_price_data", force: :cascade do |t|
-    t.integer "weekday_day_price"
-    t.integer "holiday_day_price"
-    t.integer "weekday_night_price"
-    t.integer "holiday_night_price"
+    t.integer "weekday_day_price", default: 0
+    t.integer "holiday_day_price", default: 0
+    t.integer "weekday_night_price", default: 0
+    t.integer "holiday_night_price", default: 0
     t.integer "weekday_dayfree1_price"
     t.integer "holiday_dayfree1_price"
     t.integer "weekday_nightfree1_price"

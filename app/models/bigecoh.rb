@@ -1,14 +1,13 @@
 class Bigecoh < KaraokeShop
   attr_accessor :dayfree1_limittime, :dayfree1_start_limittime, :nightfree1_limittime, :nightfree1_start_limittime
-  after_initialize :set_parameters, if: :new_record?
   NORMAL = '通常'
   DAY_FREETIME = '昼フリータイム'
   NIGHT_FREETIME = '夜フリータイム'
 
   def display_data_list
     [normal_data,dayfree1_data,nightfree1_data].map do |data|
-      calc = CalcBigecoh.new(id: self.id, name: self.name, starttime: starttime, endtime: endtime, karaoke_kind_id: self.karaoke_kind_id, date: date, freetime_range: data[:range], limittime_range: data[:limit_range]).set_playtime_range
-      DisplayData.new(self.name,data,calc.playtime_range,onedrink(calc,data),charge(calc,data),self.tax_include,karaoke_kind_id)
+      calc = CalcBigecoh.new(starttime: starttime, endtime: endtime, freetime_range: data[:range], limittime_range: data[:limit_range], shop_data: self.shop_data).set_parameters.set_playtime_range
+      DisplayData.new(name,data,calc.playtime_range,onedrink(calc,data),charge(calc,data),tax_include,karaoke_kind_id,homepage_link)
     end.compact
   end
 
@@ -27,11 +26,19 @@ class Bigecoh < KaraokeShop
   end
 
   def dayfree1time_range
-    dayfree1_limittime ? TimeRange.new([dayfree1_starttime,real_starttime].max,[dayfree1_starttime,real_starttime].max + dayfree1_limittime.hour) : TimeRange.new([dayfree1_starttime,open_time].max,dayfree1_endtime)
+    dayfree1_limittime ? dayfree1limited_time_range : dayfree1unlimited_time_range
+  end
+
+  def dayfree1limited_time_range
+    TimeRange.new([dayfree1_starttime,real_starttime].max,[[dayfree1_starttime,real_starttime].max + dayfree1_limittime.hour,dayfree1_endtime].min)
+  end
+
+  def dayfree1unlimited_time_range
+    dayfree1_starttime ? TimeRange.new([dayfree1_starttime,open_time].max,dayfree1_endtime) : TimeRange.new(nil,nil)
   end
 
   def nightfree1time_range
-    TimeRange.new(nightfree1_starttime,[nightfree1_endtime,close_time].min)
+    nightfree1_starttime ? TimeRange.new(nightfree1_starttime,[nightfree1_endtime,close_time].min) : TimeRange.new(nil,nil)
   end
 
   def dayfree1_limit_range

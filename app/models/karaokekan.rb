@@ -1,13 +1,12 @@
 class Karaokekan < KaraokeShop
-  after_initialize :set_parameters, if: :new_record?
   NORMAL = '通常'
   DAY_FREETIME = '昼フリータイム'
   NIGHT_FREETIME = '夜フリータイム'
 
   def display_data_list
     [normal_data,dayfree1_data,nightfree1_data].map do |data|
-      calc = CalcKaraokekan.new(id: self.id, name: self.name, starttime: starttime, endtime: endtime, karaoke_kind_id: self.karaoke_kind_id, date: date, freetime_range: data[:range])
-      DisplayData.new(self.name,data,playtime_range,onedrink(calc,data),charge(calc,data),self.tax_include,karaoke_kind_id)
+      calc = CalcKaraokekan.new(freetime_range: data[:range], starttime: starttime, endtime: endtime, shop_data: self.shop_data).set_parameters
+      DisplayData.new(name,data,playtime_range,onedrink(calc,data),charge(calc,data),tax_include,karaoke_kind_id,homepage_link)
     end.compact
   end
 

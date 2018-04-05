@@ -2,7 +2,7 @@ class MemberPriceDatum < ApplicationRecord
   belongs_to :karaoke_shop
 
   def to_param(date_status)
-    days_param(date_status).merge(nights_param(date_status)).delete_if{|key,value| value == 0 || value.nil?}
+    days_param(date_status).merge(nights_param(date_status)).delete_if{|key,value| value.nil?}
   end
 
   private

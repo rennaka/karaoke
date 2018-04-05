@@ -27,9 +27,9 @@
             </tr>
           </thead>
           <tbody>
-            <% @all_display_data.each do |display_data| %>
+            <% @all_display_data.sort_by{|display_data| display_data.price}.each do |display_data| %>
               <tr>
-                <td><%= display_data.shop_name %></td>
+                <td><%= link_to display_data.shop_name, display_data.homepage_link, :target=>["_blank"] %></td>
                 <td><%= display_data.type %></td>
                 <td><%= display_data.onedrink_price == 0 ? 'フリードリンク' : 'ワンドリンク制' %></td>
                 <td><%= display_data.starttime.strftime("%H:%M") %></td>

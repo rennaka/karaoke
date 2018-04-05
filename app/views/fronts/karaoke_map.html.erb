@@ -1,0 +1,88 @@
+<h1>カラオケ店舗検索</h1>
+
+<%= form_with(url: map_search_path, local: true) do |form| %>
+  <div class="field">
+    <%= select_tag "from_place", options_for_select([["現在地","現在地"],["指定したピン","ピン"]]) %>から
+    <%= select_tag "distance", options_for_select([["全ての店舗",0],["300m以内",300],["500m以内",500],["1km以内",1000],["3km以内",3000],["5km以内",5000]]) %>で
+    <%= form.submit "検索" %>
+  </div>
+<% end %>
+
+<div id="maps"></div>
+
+<script src="//maps.googleapis.com/maps/api/js?key=<%= ENV['MAP_API_KEY'] %>&libraries=geometry&callback=initMap" async></script>
+<script>
+  function initMap() {
+    if( navigator.geolocation ){
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var CurrentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        var mapArea = document.getElementById('maps');
+        var mapOptions = {
+          center: CurrentPosition,
+          zoom: 16,
+        };
+        var map = new google.maps.Map(mapArea, mapOptions);
+        var current_point_marker = new google.maps.Marker({
+          map: map,
+          position: CurrentPosition,
+          title: "現在地",
+          icon: {
+        		fillColor: "#7FFFD4",                //塗り潰し色
+        		fillOpacity: 0.8,                    //塗り潰し透過率
+        		path: google.maps.SymbolPath.CIRCLE, //円を指定
+        		scale: 7,                           //円のサイズ
+        		strokeColor: "#4169E1",              //枠の色
+        		strokeWeight: 1.0                    //枠の透過率
+        	}
+        });
+        var geocoder = new google.maps.Geocoder();
+        <% @karaoke_shops.each do |karaoke_shop| %>
+          geocoder.geocode(
+            {
+            'address': '<%= karaoke_shop.address %>'
+            },
+            function(results, status) {
+              if (status === google.maps.GeocoderStatus.OK) {
+                var ShopPosition = results[0].geometry.location
+                var distance = google.maps.geometry.spherical.computeDistanceBetween(CurrentPosition,ShopPosition);
+                if (distance < 10000) {
+                  var marker = new google.maps.Marker({
+                    position: ShopPosition,
+                    title: '<%= karaoke_shop.name %>',
+                    map: map
+                  });
+                  var window_content = '<div class="address">' +
+                                         '<%= karaoke_shop.address %>' +
+                                       '</div>' +
+                                       '<div class="distance">' +
+                                         '現在地からの距離： ' + display(distance) +
+                                       '</div>' +
+                                       '<div class="link">' +
+                                         '<%= link_to karaoke_shop.name, karaoke_shop.homepage_link, :target=>["_blank"] %>' +
+                                       '</div>'
+                  var infoWindow = new google.maps.InfoWindow({ // 吹き出しの追加
+                    content: window_content
+                  });
+                  marker.addListener('click', function() { // マーカーをクリックしたとき
+                    infoWindow.open(map, marker); // 吹き出しの表示
+                  });
+                }
+              }
+            });
+        <% end %>
+      });
+    }
+    else{
+  	  alert( "あなたの端末では、現在位置を取得できません。" ) ;
+    }
+  }
+  function display(distance){
+    if (distance >= 3000){
+      return Math.round(distance/100)/10 + 'km'
+    } else if (distance >= 1000){
+      return Math.round(distance/10)/100 + 'km'
+    } else{
+      return Math.round(distance/10) * 10 + 'm'
+    }
+  }
+</script>

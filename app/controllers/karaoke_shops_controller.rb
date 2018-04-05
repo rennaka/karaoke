@@ -55,7 +55,7 @@ class KaraokeShopsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def karaoke_shop_params
-      params.require(:karaoke_shop).permit(:name, :karaoke_kind_id, :tax_include)
+      params.require(:karaoke_shop).permit(:name, :karaoke_kind_id, :tax_include, :area_id)
     end
 
     def member_price_data_params
@@ -89,7 +89,7 @@ class KaraokeShopsController < ApplicationController
     end
 
     def shoptime_data_params
-      params[:shoptime_data].values.map{|data| {open_time: OnlyTime.open_time(data[:open_time]), close_time: OnlyTime.close_time(data[:close_time]), date: data[:date],
+      params[:shoptime_data].values.map{|data| {open_time: OnlyTime.shop_time(data[:open_time],data[:close_time])[:open_time], close_time: OnlyTime.shop_time(data[:open_time],data[:close_time])[:close_time], date: data[:date],
                                                 nightstart_time: OnlyTime.set(data[:nightstart_time]), nightend_time: OnlyTime.set(data[:open_time]) == OnlyTime.set(data[:close_time]) ? OnlyTime.set(data[:nightend_time]) : nil
                                                }
                                        }

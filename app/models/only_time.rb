@@ -25,6 +25,11 @@ class OnlyTime
     set(close_time_params) == DEFAULT_TIME ? DEFAULT_CLOSE_TIME : set(close_time_params)
   end
 
+  def self.shop_time(open_time_params,close_time_params)
+    tmp_close_time = close_time(close_time_params)
+    open_time(open_time_params) <= tmp_close_time ? {open_time: open_time(open_time_params), close_time: tmp_close_time} : {open_time: open_time(open_time_params), close_time: tmp_close_time + 1.day}
+  end
+
   def self.freetime(starttime_params,endtime_params)
     return {starttime: nil, endtime: nil} if set(starttime_params) == set(endtime_params)
     tmp_endtime = set(endtime_params)

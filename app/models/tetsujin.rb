@@ -1,14 +1,13 @@
 class Tetsujin < KaraokeShop
   attr_accessor :dayfree2_price, :nightfree2_price, :dayfree2_starttime, :dayfree2_endtime, :nightfree2_starttime, :nightfree2_endtime, :dayfree2_onedrink, :nightfree2_onedrink, :dayfree1_start_limittime, :dayfree2_start_limittime, :nightfree1_start_limittime, :nightfree2_start_limittime
-  after_initialize :set_parameters, if: :new_record?
   NORMAL = '通常'
   DAY_FREETIME = '昼フリータイム'
   NIGHT_FREETIME = '夜フリータイム'
 
   def display_data_list
     [normal_data,dayfree1_data,dayfree2_data,nightfree1_data,nightfree2_data].map do |data|
-      calc = CalcTetsujin.new(id: self.id, name: self.name, starttime: starttime, endtime: endtime, karaoke_kind_id: self.karaoke_kind_id, date: date, freetime_range: data[:range], limittime_range: data[:limit_range]).set_playtime_range
-      DisplayData.new(self.name,data,playtime_today_range,onedrink(calc,data),charge(calc,data),self.tax_include,karaoke_kind_id)
+      calc = CalcTetsujin.new(starttime: starttime, endtime: endtime, freetime_range: data[:range], limittime_range: data[:limit_range], shop_data: self.shop_data).set_parameters.set_playtime_range
+      DisplayData.new(name,data,playtime_today_range,onedrink(calc,data),charge(calc,data),tax_include,karaoke_kind_id,homepage_link)
     end.compact
   end
 

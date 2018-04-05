@@ -3,10 +3,21 @@ class FrontsController < ApplicationController
   def top
   end
 
+  def calc_price_form
+  end
+
+  def karaoke_map
+    @karaoke_shops = KaraokeShop.where(karaoke_kind_id: 3)
+  end
+
+  def map_search
+    
+  end
+
   def result
     return @all_display_data = [] if start_time == end_time
     shops = KaraokeShop.where(karaoke_kind_id: params[:kind]&.values).map { |shop| shop.object(params[:date],start_time,end_time) }
-    @all_display_data = shops.map {|shop| shop.display_data_list}.flatten#.select{|display_data| display_data.charge > 0}
+    @all_display_data = shops.map {|shop| shop.display_data_list}.flatten.select{|display_data| display_data.charge > 0}
   end
 
   def edit
